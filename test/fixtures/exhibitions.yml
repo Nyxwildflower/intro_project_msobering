@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  description: MyText
+  gallery_title: MyString
+  exhibition_start: 2024-04-13 10:44:26
+  exhibition_end: 2024-04-13 10:44:26
+
+two:
+  title: MyString
+  description: MyText
+  gallery_title: MyString
+  exhibition_start: 2024-04-13 10:44:26
+  exhibition_end: 2024-04-13 10:44:26
