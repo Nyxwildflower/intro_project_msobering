@@ -1,3 +1,3 @@
 class Artist < ApplicationRecord
-  belongs_to :artwork
+  has_many :artworks
 end
