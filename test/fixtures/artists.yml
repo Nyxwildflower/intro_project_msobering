@@ -5,11 +5,11 @@ one:
   birth_date: 1
   death_date: 1
   description: MyText
-  artwork: one
+  api_id: 1
 
 two:
   title: MyString
   birth_date: 1
   death_date: 1
   description: MyText
-  artwork: two
+  api_id: 1

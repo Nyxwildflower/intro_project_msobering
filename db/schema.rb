@@ -10,16 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_13_161316) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_15_024108) do
   create_table "artists", force: :cascade do |t|
     t.string "title"
     t.integer "birth_date"
     t.integer "death_date"
     t.text "description"
-    t.integer "artwork_id", null: false
+    t.integer "api_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["artwork_id"], name: "index_artists_on_artwork_id"
   end
 
   create_table "artworks", force: :cascade do |t|
@@ -33,6 +32,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_13_161316) do
     t.integer "api_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "artist_id"
+    t.index ["artist_id"], name: "index_artworks_on_artist_id"
   end
 
   create_table "artworks_categories", id: false, force: :cascade do |t|
@@ -61,5 +62,4 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_13_161316) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "artists", "artworks"
 end
