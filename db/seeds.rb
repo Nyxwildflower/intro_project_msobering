@@ -6,6 +6,9 @@ Artist.destroy_all
 Category.destroy_all
 Exhibition.destroy_all
 
+# This file runs for 9.48 minutes due to the use of the sleep function to avoid
+# my being emailed about "too many requests". You have been warned.
+
 # The artwork data is included with the exhibition request, but is stil
 # described as a different dataset in the "about page".
 # The artist endpoint was moved further down so the ids are reset every loop.
@@ -20,7 +23,7 @@ def request_data(url)
 
   # Create a request that uses an AIC-User-Agent header.
   # This is requested in the API documentation.
-  headers = {"AIC-User-Agent" => "intro-project (msobering2@academic.rrc.ca)"}
+  headers = {"AIC-User-Agent" => "intro-project (madisonsobering@gmail.com)"}
 
   response = Net::HTTP.get(uri, headers)
   formatted_response = JSON.parse(response)
@@ -51,15 +54,38 @@ end
         alt_text = art["thumbnail"] ? art["thumbnail"]["alt_text"] : "null"
 
         artwork = Artwork.find_or_create_by!(title:           art["title"],
-                                            year:            art["date_display"],
-                                            medium:          art["medium_display"],
-                                            place_of_origin: art["place_of_origin"],
-                                            dimensions:      art["dimensions"],
-                                            description:     art["description"],
-                                            alt_text:        alt_text,
-                                            api_id:          art["artist_id"])
+                                             year:            art["date_display"],
+                                             medium:          art["medium_display"],
+                                             place_of_origin: art["place_of_origin"],
+                                             dimensions:      art["dimensions"],
+                                             description:     art["description"],
+                                             alt_text:        alt_text,
+                                             api_id:          art["artist_id"])
 
         artwork.exhibitions << exhibit_association
+
+        # Attach the associated image using Active Storage.
+        if !art["image_id"].blank?
+          # Add the identifier from the artwork and specify the region/size/rotation/quality.
+          image_url = image_endpoint + art["image_id"]
+
+          image_request = image_url + "/info.json"
+
+          check_image_max_size = request_data(image_request)
+
+          if check_image_max_size["width"] < 843
+            image_url += "/full/400,/0/default.jpg"
+          else
+            image_url += "/full/843,/0/default.jpg"
+          end
+
+          # Leave time between requests.
+          sleep 3
+          uri = URI.parse(image_url)
+          image = URI.open(uri, "AIC-User-Agent" => "intro-project (madisonsobering@gmail.com)")
+
+          artwork.image.attach(io: image, filename: art["image_id"], content_type: "image/jpeg")
+        end
 
         # Create the associated categories.
         art["category_titles"].each do |category_name|
