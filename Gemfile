@@ -44,11 +44,7 @@ gem "bootsnap", require: false
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 gem "image_processing", "~> 1.2"
 
-# Adding Bulma following the instructions from joshuajansen on GitHub.
-# I didn't have any success with changing Bulma variables using the normal install.
-gem "bulma-rails"
-
-# Using SASS to process CSS on the scss file.
+# Using SASS to process CSS in the scss file.
 gem "sassc-rails"
 
 group :development, :test do
