@@ -7,4 +7,11 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "artworks#index"
+
+  resources :artists, only: ['index','show']
+
+  resources :artworks, only: ['index','show'] do
+    resources :categories, only: ['index','show']
+    resources :exhibitions, only: ['index','show']
+  end
 end
