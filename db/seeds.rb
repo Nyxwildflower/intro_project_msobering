@@ -1,12 +1,18 @@
 require "net/http"
 require "json"
 
-Artwork.destroy_all
 Artist.destroy_all
 Category.destroy_all
 Exhibition.destroy_all
+terminate_art = Artwork.all
 
-# This file runs for 9.48 minutes due to the use of the sleep function to avoid
+# Database started locking when trying to delete associated images.
+terminate_art.each do |artwork|
+  sleep 1
+  artwork.destroy
+end
+
+# This file runs for 11.77 minutes due to the use of the sleep function to avoid
 # my being emailed about "too many requests". You have been warned.
 
 # The artwork data is included with the exhibition request, but is stil

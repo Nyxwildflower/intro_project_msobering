@@ -1,6 +1,6 @@
 class Artwork < ApplicationRecord
   has_one_attached :image do |attachable|
-    attachable.variant :tile_size, resize_to_limit: [300,300], quality: 100
+    attachable.variant :tile_size, resize_to_fill: [300,300], quality: 100
   end
 
   belongs_to :artist, optional: true
