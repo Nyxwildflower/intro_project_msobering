@@ -1,7 +1,9 @@
 <%= render partial: "partials/page_title", locals: {title: "Categories", page_object: @categories} %>
 
-<section class="section grid is-col-min-8">
-  <% @categories.each do |category| %>
-    <div class="cell"><%= link_to category.title, category %></div>
-  <% end %>
+<section class="section fixed-grid has-2-cols">
+  <div class="grid">
+    <% @categories.each do |category| %>
+      <div class="cell box"><%= link_to category.title, category %></div>
+    <% end %>
+  </div>
 </section>

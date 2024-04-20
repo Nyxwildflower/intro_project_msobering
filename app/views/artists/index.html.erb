@@ -1,7 +1,9 @@
 <%= render partial: "partials/page_title", locals: {title: "Artists", page_object: @artists} %>
 
-<section class="section grid is-col-min-8">
-  <% @artists.each do |artist| %>
-    <div class="cell"><%= link_to artist.title, artist %></div>
-  <% end %>
+<section class="section fixed-grid has-2-cols">
+  <div class="grid">
+    <% @artists.each do |artist| %>
+      <div class="cell box"><%= link_to artist.title, artist %></div>
+    <% end %>
+  </div>
 </section>
