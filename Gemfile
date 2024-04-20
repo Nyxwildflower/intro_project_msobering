@@ -47,6 +47,9 @@ gem "image_processing", "~> 1.2"
 # Using SASS to process CSS in the scss file.
 gem "sassc-rails"
 
+# Use Kaminari to paginate index pages
+gem "kaminari"
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mswin mswin64 mingw x64_mingw ]
