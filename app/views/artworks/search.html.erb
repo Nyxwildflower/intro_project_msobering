@@ -1,0 +1,10 @@
+<%= render partial: "partials/page_title", locals: {title: "Search Results", page_object: @artworks} %>
+
+<section class="section">
+  <div class="box grid">
+    <h2 class="cell subtitle is-4">You searched for: "<%= @query %>" and found <%= pluralize(@count, 'result') %>.</h2>
+  </div>
+</section>
+
+
+<%= render partial: "partials/related_artworks", locals: {artworks: @artworks} %>

@@ -1,10 +1,10 @@
-<nav class="navbar pl-6 has-background-grey-lighter" role="navigation" aria-label="main-navigation">
+<nav class="navbar pl-6 is-dark" role="navigation" aria-label="main-navigation">
   <div id="navbarBasicExample" class="navbar-menu">
     <div class="navbar-start">
-      <a href="/about" class="navbar-item has-text-link">About</a>
+      <a href="/about" class="navbar-item">About</a>
 
       <div class="navbar-item has-dropdown is-hoverable">
-        <a href="/artworks/" class="navbar-link has-text-link">Home</a>
+        <a href="/artworks/" class="navbar-link">Home</a>
 
         <div class="navbar-dropdown">
           <a href="/artworks/" class="navbar-item">Artworks</a>
@@ -13,6 +13,21 @@
           <a href="/exhibitions/" class="navbar-item">Exhibitions</a>
         </div>
       </div>
+    </div>
+    <div class="navbar-end">
+      <%= form_with(url: search_artworks_path, method: "get") do |form| %>
+        <div class="field has-addons p-3">
+          <div class="control">
+            <%= form.label :q, "Search for:", class: "is-sr-only" %>
+          </div>
+          <div class="control">
+            <%= form.text_field :q, class: "input" %>
+          </div>
+          <div class="control">
+            <%= form.submit "Search", class: "button is-info" %>
+          </div>
+        </div>
+      <% end %>
     </div>
   </div>
 </nav>
