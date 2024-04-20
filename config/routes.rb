@@ -8,5 +8,8 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "artworks#index"
 
+  # Route for the static About page.
+  get "/about", to: "pages#about"
+
   resources :artists, :artworks, :categories, :exhibitions, only: ['index','show']
 end
