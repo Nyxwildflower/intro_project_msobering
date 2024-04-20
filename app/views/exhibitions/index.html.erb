@@ -1,0 +1,9 @@
+<%= render partial: "partials/page_title", locals: {title: "Exhibitions", page_object: @exhibitions} %>
+
+<section class="section fixed-grid pt-0">
+  <div class="grid">
+    <% @exhibitions.each do |exhibition| %>
+      <div class="cell is-col-span-3"><%= link_to exhibition.title, exhibition %></div>
+    <% end %>
+  </div>
+</section>

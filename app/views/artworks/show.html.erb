@@ -1,0 +1,81 @@
+<% if @artwork.image.attached? %>
+  <div class="grid is-flex is-justify-content-space-around">
+    <%= image_tag @artwork.image, alt: @artwork.alt_text, class: "cell" %>
+  </div>
+<% end %>
+
+<section class="section">
+  <h1 class="title mb-4"><%= @artwork.title %></h1>
+  <h2 class="subtitle">
+    <% if @artwork.artist.present? %>
+      <%= link_to @artwork.artist.title, @artwork.artist %>
+    <% else %>
+      Unknown
+    <% end %>
+  </h2>
+</section>
+
+<section class="section py-0">
+  <div class="box pl-6">
+      <ul class="grid">
+        <li class="cell is-col-span-12">
+          Year(s): <%= pretty_null_display(@artwork.year) %>
+        </li>
+        <li class="cell is-col-span-12">
+          Medium: <%= pretty_null_display(@artwork.medium) %>
+        </li>
+        <li class="cell is-col-span-12">
+          Dimensions: <%= @artwork.dimensions %>
+        </li>
+      </ul>
+
+      <div class="mt-5 fixed-grid has-6-cols">
+        <div class="grid">
+          <div class="cell">
+            <h3 class="subtitle is-4">Description</h3>
+          </div>
+          <p class="cell is-col-span-4">
+            <%= pretty_null_display(@artwork.description) %>
+          </p>
+        </div>
+
+      </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="grid">
+    <div class="cell is-half">
+      <div class="grid">
+        <div class="cell is-col-span-6">
+          <h3 class="subtitle is-5">Category</h3>
+        </div>
+        <div class="cell is-col-span-6">
+          <ul class="grid">
+            <% @artwork.categories.each do |category| %>
+              <li class="cell">
+                <%= link_to category.title, category, class: "box button is-dark is-clipped" %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="cell is-half">
+      <div class="grid">
+        <div class="cell">
+          <h3 class="subtitle is-5">Exhibitions</h3>
+        </div>
+        <div class="cell is-col-span-12">
+          <ul class="grid">
+            <% @artwork.exhibitions.each do |exhibition| %>
+              <li class="cell is-narrow pr-4">
+                <%= link_to exhibition.title, exhibition, class: "box button is-dark is-clipped" %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

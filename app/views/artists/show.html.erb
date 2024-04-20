@@ -1,0 +1,29 @@
+<section class="section pb-0">
+  <div class="grid box pl-6">
+    <h1 class="cell is-col-span-12 title"><%= @artist.title %></h1>
+
+    <div class="cell is-col-span-12">
+      <div class="fixed-grid has-6-cols">
+        <div class="grid">
+          <div class="cell">Birth Date: <%= pretty_null_display(@artist.birth_date) %></div>
+          <div class="cell is-col-start-2">Death Date: <%= pretty_null_display(@artist.death_date) %></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-5 cell is-col-span-12">
+      <div class="fixed-grid has-6-cols">
+        <div class="grid">
+          <div class="cell">
+            <h2 class="subtitle is-4">Life</h2>
+          </div>
+          <p class="cell is-col-span-4">
+            <%= pretty_null_display(@artist.description) %>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%= render partial: "partials/related_artworks", locals: {artworks: @artist.artworks} %>

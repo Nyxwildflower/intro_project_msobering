@@ -1,0 +1,7 @@
+<section class="section pb-0">
+  <div class="grid box pl-6">
+    <h1 class="cell is-col-span-12 title"><%= @category.title %></h1>
+  </div>
+</section>
+
+<%= render partial: "partials/related_artworks", locals: {artworks: @category.artworks} %>

@@ -1,0 +1,28 @@
+<section class="section pb-0">
+  <div class="grid box pl-6">
+    <h1 class="cell is-col-span-12 title"><%= @exhibition.title %></h1>
+
+    <div class="cell is-col-span-12">
+      <ul class="grid ">
+        <li class="cell">
+          Exhibition Start: <%= @exhibition.exhibition_start %>
+        </li>
+        <li class="cell">
+          Exhibition End: <%= @exhibition.exhibition_end %>
+        </li>
+        <li class="cell">
+          Belongs to Gallery: <%= pretty_null_display(@exhibition.gallery_title) %>
+        </li>
+      </ul>
+    </div>
+
+    <div class="mt-5 cell is-col-span-12">
+      <div class="grid is-col-min-4">
+        <div class="cell subtitle is-4">Description</div>
+        <p class="cell is-col-span-5"><%= pretty_null_display(@exhibition.description) %></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%= render partial: "partials/related_artworks", locals: {artworks: @exhibition.artworks} %>
