@@ -13,3 +13,48 @@
  *= require_tree .
  *= require_self
  */
+
+// This code is taken from https://codepen.io/Nikitoss334/pen/KLxaJK?editors=1100 on 4/20/24.
+// It is a set of SCSS code that controls the visibility of the navbar via hamburger menu.
+// It allows menu extension on mobile when you click on the invisible checkbox with the id 'toggler'.
+// The dropdown and search bar both have terrible styles like this, but I didn't have to
+// create a JavaScript file to make the menu work, so that's a win.
+// I adapted this by changing some navbar styles when it's in hamburger mode, and added an
+// extra line in the menu partial because the burger was broken.
+
+ //We don't want menu to be displayed on mobile by default
+@media screen and (max-width: 1024px) {
+  .navbar-menu {
+    display: none;
+  }
+}
+//We don't need checkbox to be displayed in order for it to work
+.toggler {
+  display: none;
+}
+//Below are all the functionalities:
+.navbar .toggler:checked {
+  //Hamburger changes to X when toggler is checked
+  & + .navbar-brand .burger {
+    & span:nth-child(1) {
+      -webkit-transform: translateY(3px) rotate(45deg);
+      transform: translateY(3px) rotate(45deg);
+    }
+    & span:nth-child(2),
+      span:nth-child(3) {
+      opacity: 0;
+    }
+    & span:nth-child(4){
+      -webkit-transform: translateY(-3px) rotate(-45deg);
+      transform: translateY(-3px) rotate(-45deg);
+    }
+  }
+  //Displays menu when toggler is checked only on mobile/tablet
+  & ~ .navbar-menu {
+    @media screen and (max-width: 1024px) {
+      display: block;
+      padding: 0px 60px 0px 0px;
+      box-shadow: none;
+    }
+  }
+}
