@@ -1,0 +1,30 @@
+<section class="m-6 grid">
+  <div class="cell is-col-span-12">
+    <h2 class="mb-5 subtitle is-5">Artworks</h2>
+  </div>
+
+  <div class="cell is-col-span-12">
+    <div class="fixed-grid has-1-cols-mobile has-2-cols-tablet has-5-cols-desktop">
+      <div class="grid flex-wrap-wrap">
+        <% artworks.each do |artwork| %>
+          <div class="cell">
+            <div class="card">
+              <% if artwork.image.attached? %>
+                <div class="card-image">
+                  <figure class="image">
+                  <%= image_tag artwork.image.variant(:tile_size), alt: artwork.alt_text %>
+                  </figure>
+                </div>
+              <% end %>
+              <div class="card-content">
+                <p class="title is-6 is-clipped">
+                  <%= link_to artwork.title, artwork_path(artwork.id) %>
+                </p>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</section>
