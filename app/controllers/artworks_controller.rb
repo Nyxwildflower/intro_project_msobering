@@ -1,6 +1,6 @@
 class ArtworksController < ApplicationController
   def index
-    @artworks = Artwork.includes(:artist).all
+    @artworks = Artwork.page(params[:page]).includes(:artist)
   end
 
   def show
