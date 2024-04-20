@@ -1,44 +1,41 @@
+<%= render partial: "partials/page_title", locals: {title: "Artworks", page_object: @artworks} %>
+
 <section class="section">
-  <div class="table-container">
-    <table class="table is-striped">
-      <thead>
-        <tr class="is-ancestor mb-3">
-          <th class="tile is-3">Artwork</th>
-          <th class="tile is-2">Artist</th>
-          <th class="tile is-2">Categories</th>
-          <th class="tile is-3">Exhibitions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @artworks.each do |artwork| %>
-          <tr class="tile is-ancestor pt-3">
-            <td class="tile is-3">
-              <%= link_to artwork.title, artwork %>
-            </td>
-            <td class="tile is-2">
-              <% if artwork.artist.present? %>
-                <%= link_to artwork.artist.title, artwork.artist %>
-              <% else %>
-                Unknown
-              <% end %>
-            </td>
-            <td class="tile is-2 is-flex-wrap-wrap">
-              <% artwork.categories.each do |category| %>
-                <p class="pr-3">
-                  <%= link_to category.title, artwork_category_path(artwork.id, category.id) %>
-                </p>
-              <% end %>
-            </td>
-            <td class="tile is-3 is-flex-wrap-wrap">
-              <% artwork.exhibitions.each do |exhibition| %>
-                <p class="pr-3">
-                  <%= link_to exhibition.title, artwork_exhibition_path(artwork.id, exhibition.id) %>
-                </p>
-              <% end %>
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+  <div class="fixed-grid has-8-cols">
+    <div class="grid box has-background-dark pb-0">
+      <div class="cell is-col-span-3 subtitle has-text-weight-bold has-text-white is-6">Artwork</div>
+      <div class="cell is-col-span-1 subtitle has-text-weight-bold has-text-white is-6">Artist</div>
+      <div class="cell is-col-span-1 subtitle has-text-weight-bold has-text-white is-6">Categories</div>
+      <div class="cell is-col-span-3 subtitle has-text-weight-bold has-text-white is-6">Exhibitions</div>
+    </div>
+
+    <% @artworks.each do |artwork| %>
+      <div class="grid box">
+        <div class="cell is-col-span-3">
+          <%= link_to artwork.title, artwork %>
+        </div>
+        <div class="cell is-col-span-1">
+          <% if artwork.artist.present? %>
+            <%= link_to artwork.artist.title, artwork.artist %>
+          <% else %>
+            Unknown
+          <% end %>
+        </div>
+        <div class="cell is-col-span-1">
+          <% artwork.categories.each do |category| %>
+            <p class="pr-3">
+              <%= link_to category.title, category %>
+            </p>
+          <% end %>
+        </div>
+        <div class="cell is-col-span-3">
+          <% artwork.exhibitions.each do |exhibition| %>
+            <p class="pr-3">
+              <%= link_to exhibition.title, exhibition %>
+            </p>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
   </div>
 </section>
