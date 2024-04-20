@@ -11,5 +11,12 @@ Rails.application.routes.draw do
   # Route for the static About page.
   get "/about", to: "pages#about"
 
-  resources :artists, :artworks, :categories, :exhibitions, only: ['index','show']
+  # Create a route for the search results.
+  resources :artworks, only: ['index','show'] do
+    collection do
+      get 'search'
+    end
+  end
+
+  resources :artists, :categories, :exhibitions, only: ['index','show']
 end
