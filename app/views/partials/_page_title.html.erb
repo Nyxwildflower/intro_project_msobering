@@ -1,5 +1,11 @@
-<section class="section pb-2">
-  <div>
+<section class="section grid is-col-min-4 pb-2">
+  <div class="cell is-col-span-12  mb-3">
     <h1 class="title has-text-centered is-1"><%= title %></h1>
+  </div>
+
+  <div class="cell is-col-span-12">
+    <div class="columns is-centered">
+      <div class="column is-one-third"><%= paginate page_object %></div>
+    </div>
   </div>
 </section>
