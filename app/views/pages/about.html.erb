@@ -1,0 +1,501 @@
+<section class="section">
+  <div class="grid py-0">
+    <div class="cell is-col-span-8">
+      <h1 class="title has-text-centered">About</h1>
+    </div>
+  </div>
+
+  <div class="grid box p-6">
+    <div class="cell is-col-span-8">
+      <h2 class="subtitle">Database Diagram</h2>
+    </div>
+    <div class="cell is-col-span-8">
+      <%= image_tag("Intro_erd.vpd.png", alt: "An Entity Relationship Diagram that describes the data structure of the website detailed below.") %>
+    </div>
+  </div>
+
+  <div class="grid box p-6">
+    <div class="cell is-col-span-8">
+      <h2 class="subtitle">Data Sources</h2>
+    </div>
+
+    <div class="cell is-col-span-8 mt-6">
+      <h3 class="subtitle is-5 has-text-weight-bold"> API Endpoint: Art Institute of Chicago - Exhibitions</h3>
+    </div>
+
+    <div class="cell is-col-span-8">
+      <p>
+        This REST API endpoint returns JSON-formatted data. Each entry describes an exhibition,
+        including the title, description, when they started and ended, as well as which gallery
+        it featured in primarily. This endpoint includes a subresource of related artworks,
+        which is described next.
+      </p>
+    </div>
+
+    <div class="cell is-col-span-8">
+      <h3 class="subtitle is-6 mt-4 has-text-weight-bold"> Exhibitions Example Response</h3>
+    </div>
+
+    <details class="cell is-col-span-8">
+      <summary>See Response</summary>
+      <p>
+        {<br />
+        &quot;pagination&quot;: {<br />
+        &quot;total&quot;: 6205,<br />
+        &quot;limit&quot;: 1,<br />
+        &quot;offset&quot;: 0,<br />
+        &quot;total_pages&quot;: 6205,<br />
+        &quot;current_page&quot;: 1,<br />
+        &quot;next_url&quot;: &quot;https://api.artic.edu/api/v1/exhibitions?page=2&amp;limit=1&amp;fields=id%2Ctitle%2Cgallery_title%2Cshort_description%2Caic_start_at%2Caic_end_at%2Cartwork_ids&amp;include=artworks&quot;<br />
+        },<br />
+        &quot;data&quot;: [<br />
+        {<br />
+        &quot;id&quot;: 3070,<br />
+        &quot;title&quot;: &quot;Van Gogh&quot;,<br />
+        &quot;short_description&quot;: &quot;Please note: this exhibition is open on weekdays only.&quot;,<br />
+        &quot;aic_start_at&quot;: &quot;2016-02-16T00:00:00-06:00&quot;,<br />
+        &quot;aic_end_at&quot;: &quot;2016-05-09T00:00:00-05:00&quot;,<br />
+        &quot;gallery_title&quot;: &quot;Ryerson Library Reading Room&quot;,<br />
+        &quot;artwork_ids&quot;: [],<br />
+        &quot;artworks&quot;: []<br />
+        }<br />
+        ],<br />
+        &quot;info&quot;: {<br />
+        &quot;license_text&quot;: &quot;The data in this response is licensed under a Creative Commons Zero (CC0) 1.0 designation and the Terms and Conditions of artic.edu.&quot;,<br />
+        &quot;license_links&quot;: [<br />
+        &quot;https://creativecommons.org/publicdomain/zero/1.0/&quot;,<br />
+        &quot;https://www.artic.edu/terms&quot;<br />
+        ],<br />
+        &quot;version&quot;: &quot;1.10&quot;<br />
+        },<br />
+        &quot;config&quot;: {<br />
+        &quot;iiif_url&quot;: &quot;https://www.artic.edu/iiif/2&quot;,<br />
+        &quot;website_url&quot;: &quot;http://www.artic.edu&quot;<br />
+        }
+      </p>
+    </details>
+
+    <div class="cell is-col-span-8">
+      <h3 class="subtitle is-6 mt-4 has-text-weight-bold"> Exhibitions Associations</h3>
+    </div>
+
+    <div class="cell is-col-span-8">
+      <p>An exhibition has and belongs to many artworks.</p>
+    </div>
+
+    <div class="cell is-col-span-8">
+      <h3 class="subtitle is-6 mt-4 has-text-weight-bold"> Exhibitions Database Columns</h3>
+    </div>
+
+    <div class="cell is-col-span-8">
+      <div class="fixed-grid has-3-cols">
+        <div class="grid box">
+          <div class="cell mb-4">
+            <h4 class="subtitle is-6 mt-4 has-text-weight-bold">JSON Data Name</h4>
+          </div>
+          <div class="cell mb-4">
+            <h4 class="subtitle is-6 mt-4 has-text-weight-bold">Data Type</h4>
+          </div>
+          <div class="cell mb-4">
+            <h4 class="subtitle is-6 mt-4 has-text-weight-bold">Database Name</h4>
+          </div>
+          <div class="cell">title</div>
+          <div class="cell">string</div>
+          <div class="cell">title</div>
+          <div class="cell">short_description</div>
+          <div class="cell">text</div>
+          <div class="cell">description</div>
+          <div class="cell">gallery_title</div>
+          <div class="cell">string</div>
+          <div class="cell">gallery_title</div>
+          <div class="cell">aic_start_at</div>
+          <div class="cell">timestamp</div>
+          <div class="cell">exhibition_start</div>
+          <div class="cell">aic_end_at</div>
+          <div class="cell">timestamp</div>
+          <div class="cell">exhibition_end</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cell is-col-span-8 mt-6">
+      <h3 class="subtitle is-5 has-text-weight-bold"> API Endpoint: Art Institute of Chicago - Artworks</h3>
+    </div>
+
+    <div class="cell is-col-span-8">
+      <p>
+        This REST API endpoint returns JSON-formatted data. Instead of calling it by itself, this information
+        is collected through the exhibition endpoint as related artworks. This is the main source of data,
+        and is being used to create around 150 artwork records for the database. The information being
+        collected is the name of the piece, date it was created, medium, place of origin, dimensions,
+        description, and alt text for images. This endpoint also holds information needed to find related
+        artists and images.
+      </p>
+    </div>
+
+    <div class="cell is-col-span-8">
+      <h3 class="subtitle is-6 mt-4 has-text-weight-bold"> Artworks Example Response</h3>
+    </div>
+
+    <details class="cell is-col-span-8">
+      <summary>See Response</summary>
+      <p>
+        {<br />
+        &quot;pagination&quot;: {<br />
+        &quot;total&quot;: 124938,<br />
+        &quot;limit&quot;: 1,<br />
+        &quot;offset&quot;: 0,<br />
+        &quot;total_pages&quot;: 124938,<br />
+        &quot;current_page&quot;: 1,<br />
+        &quot;next_url&quot;: &quot;https://api.artic.edu/api/v1/artworks?page=2&amp;limit=1&amp;fields=id%2Ctitle%2Cthumbnail%2Cdate_display%2Cplace_of_origin%2Cdescription%2Cdimensions%2Cmedium_display%2Cartist_ids%2Ccategory_titles&quot;<br />
+        },<br />
+        &quot;data&quot;: [<br />
+        {<br />
+        &quot;id&quot;: 2816,<br />
+        &quot;title&quot;: &quot;Interior at Nice&quot;,<br />
+        &quot;thumbnail&quot;: {<br />
+        &quot;lqip&quot;: &quot;data:image/gif;base64,R0lGODlhAwAFAPMAALJ2amWHfZmEdpmOeKCGZreUbqqDc7Kadp2RgJCqmqGgjLewm4uvp8aog8O5nwAAACH5BAAAAAAALAAAAAADAAUAAAQLsCV32CJBDWREAREAOw==&quot;,<br />
+        &quot;width&quot;: 1545,<br />
+        &quot;height&quot;: 2250,<br />
+        &quot;alt_text&quot;: &quot;Interior of warm colored room, woman sits on balcony, ocean behind her.&quot;<br />
+        },<br />
+        &quot;date_display&quot;: &quot;1919 or 1920&quot;,<br />
+        &quot;place_of_origin&quot;: &quot;France&quot;,<br />
+        &quot;description&quot;: &quot;\u003Cp\u003EBeginning in 1917, Henri Matisse spent most winters in Nice, on the Mediterranean coast. He often stayed at the H&ocirc;tel Mediterran&eacute;e, a Rococo-style building he later fondly termed &amp;quot;faked, absurd, delicious!&amp;quot; \u003Cem\u003EInterior at Nice\u003C/em\u003E is perhaps the most ambitious of a series of images the painter created using the hotel as a backdrop. The pink-tiled floors and yellow, arabesque-patterned wall-paper are present in many of these works, as are the skirted dressing table, oval mirror, shuttered French window, and balcony. The balcony in fact was one of the artist&rsquo;s favorite themes, allowing him to link internal and external space into a continuum structured by patterns and modulated light.\u003C/p\u003E\n\u003Cp\u003EAdditionally, Matisse often included a young woman somewhere in the scene. Here, his favorite model at the time, Antoinette Arnoux, plays an important role. Not only is she the subject of the painting on the wall, but the composition&rsquo;s high viewpoint and plunging, wide-angled perspective draw all attention to her as she sits on the balcony, her back to the sea. Framed by shimmering curtains, she gazes directly at the viewer.\u003C/p\u003E\n&quot;,<br />
+        &quot;dimensions&quot;: &quot;131.5 &times; 90.7 cm (51 13/16 &times; 35 11/16 in.)&quot;,<br />
+        &quot;medium_display&quot;: &quot;Oil on canvas&quot;,<br />
+        &quot;artist_ids&quot;: [35670],<br />
+        &quot;category_titles&quot;: [<br />
+        &quot;Modern Art&quot;,<br />
+        &quot;Essentials&quot;<br />
+        ]<br />
+        }<br />
+        ],<br />
+        &quot;info&quot;: {<br />
+        &quot;license_text&quot;: &quot;The &#96;description&#96; field in this response is licensed under a Creative Commons Attribution 4.0 Generic License (CC-By) and the Terms and Conditions of artic.edu. All other data in this response is licensed under a Creative Commons Zero (CC0) 1.0 designation and the Terms and Conditions of artic.edu.&quot;,<br />
+        &quot;license_links&quot;: [<br />
+        &quot;https://creativecommons.org/publicdomain/zero/1.0/&quot;,<br />
+        &quot;https://www.artic.edu/terms&quot;<br />
+        ],<br />
+        &quot;version&quot;: &quot;1.10&quot;<br />
+        },<br />
+        &quot;config&quot;: {<br />
+        &quot;iiif_url&quot;: &quot;https://www.artic.edu/iiif/2&quot;,<br />
+        &quot;website_url&quot;: &quot;http://www.artic.edu&quot;<br />
+        }<br />
+        }
+      </p>
+    </details>
+
+    <div class="cell is-col-span-8">
+      <h3 class="subtitle is-6 mt-4 has-text-weight-bold"> Artworks Associations</h3>
+    </div>
+
+    <div class="cell is-col-span-8">
+      <p>An artwork can have and belong to many exhibitions.</p>
+      <p>An artwork can have and belong to many categories.</p>
+      <p>An artwork can have an artist.</p>
+      <p>An artwork can have an image.</p>
+    </div>
+
+    <div class="cell is-col-span-8">
+      <h3 class="subtitle is-6 mt-4 has-text-weight-bold"> Artworks Database Columns</h3>
+    </div>
+
+    <div class="cell is-col-span-8">
+      <div class="fixed-grid has-3-cols">
+        <div class="grid box">
+          <div class="cell mb-4">
+            <h4 class="subtitle is-6 mt-4 has-text-weight-bold">JSON Data Name</h4>
+          </div>
+          <div class="cell mb-4">
+            <h4 class="subtitle is-6 mt-4 has-text-weight-bold">Data Type</h4>
+          </div>
+          <div class="cell mb-4">
+            <h4 class="subtitle is-6 mt-4 has-text-weight-bold">Database Name</h4>
+          </div>
+          <div class="cell">title</div>
+          <div class="cell">string</div>
+          <div class="cell">title</div>
+          <div class="cell">year</div>
+          <div class="cell">string</div>
+          <div class="cell">year</div>
+          <div class="cell">medium</div>
+          <div class="cell">string</div>
+          <div class="cell">medium</div>
+          <div class="cell">place_of_origin</div>
+          <div class="cell">string</div>
+          <div class="cell">place_of_origin</div>
+          <div class="cell">dimensions</div>
+          <div class="cell">string</div>
+          <div class="cell">dimensions</div>
+          <div class="cell">description</div>
+          <div class="cell">text</div>
+          <div class="cell">description</div>
+          <div class="cell">alt_text</div>
+          <div class="cell">string</div>
+          <div class="cell">alt_text</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cell is-col-span-8 mt-6">
+      <h3 class="subtitle is-5 has-text-weight-bold"> Added Data: Categories</h3>
+    </div>
+
+    <div class="cell is-col-span-8">
+      <p>
+        This is not an API endpoint, but actually just collected terms from the artwork endpoint. It's
+        collected and separated into a separate database table to have a reduced list of categories
+        to be referenced by artworks. It also allows us to look into specific categories without searching
+        through the artwork layer first. A category can range from describing the art period, eg.
+        Contemporary, to the medium, eg. Prints and Drawings, or even a location.
+      </p>
+    </div>
+
+    <div class="cell is-col-span-8">
+      <h3 class="subtitle is-6 mt-4 has-text-weight-bold"> Categories Example Response</h3>
+    </div>
+
+    <details class="cell is-col-span-8">
+      <summary>See Response</summary>
+      <p>
+        &ldquo;Category_titles&rdquo;:[<br />
+        &ldquo;Prints and Drawings&rdquo;,<br />
+        &ldquo;Women artists&rdquo;,<br />
+        &ldquo;Arts of the Americas&rdquo;<br />
+        ]<br />
+      </p>
+    </details>
+
+    <div class="cell is-col-span-8">
+      <h3 class="subtitle is-6 mt-4 has-text-weight-bold"> Categories Associations</h3>
+    </div>
+
+    <div class="cell is-col-span-8">
+      <p>A category can have and belong to many artworks.</p>
+    </div>
+
+    <div class="cell is-col-span-8">
+      <h3 class="subtitle is-6 mt-4 has-text-weight-bold"> Categories Database Columns</h3>
+    </div>
+
+    <div class="cell is-col-span-8">
+      <div class="fixed-grid has-3-cols">
+        <div class="grid box">
+          <div class="cell mb-4">
+            <h4 class="subtitle is-6 mt-4 has-text-weight-bold">JSON Data Name</h4>
+          </div>
+          <div class="cell mb-4">
+            <h4 class="subtitle is-6 mt-4 has-text-weight-bold">Data Type</h4>
+          </div>
+          <div class="cell mb-4">
+            <h4 class="subtitle is-6 mt-4 has-text-weight-bold">Database Name</h4>
+          </div>
+          <div class="cell">category_titles</div>
+          <div class="cell">string</div>
+          <div class="cell">title</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cell is-col-span-8 mt-6">
+      <h3 class="subtitle is-5 has-text-weight-bold"> API Endpoint: Art Institute of Chicago - Artists</h3>
+    </div>
+
+    <div class="cell is-col-span-8">
+      <p>
+        This REST API endpoint returns JSON-formatted data. The data collected from this endpoint are the
+        name, birth and death date of each artist, along with a description, if any exists, of their life.
+      </p>
+    </div>
+
+    <div class="cell is-col-span-8">
+      <h3 class="subtitle is-6 mt-4 has-text-weight-bold"> Artists Example Response</h3>
+    </div>
+
+    <details class="cell is-col-span-8">
+      <summary>See Response</summary>
+      <p>
+        {<br />
+        &quot;pagination&quot;: {<br />
+        &quot;total&quot;: 13616,<br />
+        &quot;limit&quot;: 1,<br />
+        &quot;offset&quot;: 0,<br />
+        &quot;total_pages&quot;: 13616,<br />
+        &quot;current_page&quot;: 1,<br />
+        &quot;next_url&quot;: &quot;https://api.artic.edu/api/v1/artists?page=2&amp;fields=id%2Ctitle%2Cbirth_date%2Cdeath_date%2Cdescription&amp;limit=1&quot;<br />
+        },<br />
+        &quot;data&quot;: [<br />
+        {<br />
+        &quot;id&quot;: 30979,<br />
+        &quot;title&quot;: &quot;Don A. DuBroff&quot;,<br />
+        &quot;birth_date&quot;: 1951,<br />
+        &quot;death_date&quot;: null,<br />
+        &quot;description&quot;: null<br />
+        }<br />
+        ],<br />
+        &quot;info&quot;: {<br />
+        &quot;license_text&quot;: &quot;The data in this response is licensed under a Creative Commons Zero (CC0) 1.0 designation and the Terms and Conditions of artic.edu.&quot;,<br />
+        &quot;license_links&quot;: [<br />
+        &quot;https://creativecommons.org/publicdomain/zero/1.0/&quot;,<br />
+        &quot;https://www.artic.edu/terms&quot;<br />
+        ],<br />
+        &quot;version&quot;: &quot;1.10&quot;<br />
+        },<br />
+        &quot;config&quot;: {<br />
+        &quot;iiif_url&quot;: &quot;https://www.artic.edu/iiif/2&quot;,<br />
+        &quot;website_url&quot;: &quot;http://www.artic.edu&quot;<br />
+        }<br />
+        }
+      </p>
+    </details>
+
+    <div class="cell is-col-span-8">
+      <h3 class="subtitle is-6 mt-4 has-text-weight-bold"> Artists Associations</h3>
+    </div>
+
+    <div class="cell is-col-span-8">
+      <p>An artist belongs to one or more artworks.</p>
+    </div>
+
+    <div class="cell is-col-span-8">
+      <h3 class="subtitle is-6 mt-4 has-text-weight-bold"> Artists Database Columns</h3>
+    </div>
+
+    <div class="cell is-col-span-8">
+      <div class="fixed-grid has-3-cols">
+        <div class="grid box">
+          <div class="cell mb-4">
+            <h4 class="subtitle is-6 mt-4 has-text-weight-bold">JSON Data Name</h4>
+          </div>
+          <div class="cell mb-4">
+            <h4 class="subtitle is-6 mt-4 has-text-weight-bold">Data Type</h4>
+          </div>
+          <div class="cell mb-4">
+            <h4 class="subtitle is-6 mt-4 has-text-weight-bold">Database Name</h4>
+          </div>
+          <div class="cell">title</div>
+          <div class="cell">string</div>
+          <div class="cell">title</div>
+          <div class="cell">birth_date</div>
+          <div class="cell">integer</div>
+          <div class="cell">birth_date</div>
+          <div class="cell">death_date</div>
+          <div class="cell">integer</div>
+          <div class="cell">death_date</div>
+          <div class="cell">description</div>
+          <div class="cell">text</div>
+          <div class="cell">description</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cell is-col-span-8 mt-6">
+      <h3 class="subtitle is-5 has-text-weight-bold"> API Endpoint: Art Institute of Chicago - Images</h3>
+    </div>
+
+    <div class="cell is-col-span-8">
+      <p>
+        This REST API endpoint returns an image when specifications are added at the end for size, region,
+        rotation, quality, and file type. The image id is found in the artwork request, and requested
+        individually. If the specifications are not added, it returns JSON-formatted data that describes
+        the size options and colours of the image. The images collected are stored using Active Storage.
+      </p>
+    </div>
+
+    <div class="cell is-col-span-8">
+      <h3 class="subtitle is-6 mt-4 has-text-weight-bold"> Images Example Response</h3>
+    </div>
+
+    <details class="cell is-col-span-8">
+      <summary>See Response</summary>
+      <p>
+        {<br />
+        &quot;@context&quot;: &quot;http://iiif.io/api/image/2/context.json&quot;,<br />
+        &quot;@id&quot;: &quot;https://www.artic.edu/iiif/2/fec56f67-92cd-d635-b3f8-ff3e95f462f3&quot;,<br />
+        &quot;protocol&quot;: &quot;http://iiif.io/api/image&quot;,<br />
+        &quot;width&quot;: 3000,<br />
+        &quot;height&quot;: 1928,<br />
+        &quot;sizes&quot;: [<br />
+        {<br />
+        &quot;width&quot;: 188,<br />
+        &quot;height&quot;: 121<br />
+        },<br />
+        {<br />
+        &quot;width&quot;: 375,<br />
+        &quot;height&quot;: 241<br />
+        },<br />
+        {<br />
+        &quot;width&quot;: 750,<br />
+        &quot;height&quot;: 482<br />
+        },<br />
+        {<br />
+        &quot;width&quot;: 1500,<br />
+        &quot;height&quot;: 964<br />
+        },<br />
+        {<br />
+        &quot;width&quot;: 3000,<br />
+        &quot;height&quot;: 1928<br />
+        }<br />
+        ],<br />
+        &quot;tiles&quot;: [<br />
+        {<br />
+        &quot;width&quot;: 256,<br />
+        &quot;height&quot;: 256,<br />
+        &quot;scaleFactors&quot;: [1, 2, 4, 8, 16]<br />
+        }<br />
+        ],<br />
+        &quot;profile&quot;: [<br />
+        &quot;http://iiif.io/api/image/2/level2.json&quot;,<br />
+        {<br />
+        &quot;formats&quot;: [<br />
+        &quot;jpg&quot;,<br />
+        &quot;tif&quot;,<br />
+        &quot;gif&quot;,<br />
+        &quot;png&quot;<br />
+        ],<br />
+        &quot;maxArea&quot;: 5784000,<br />
+        &quot;qualities&quot;: [<br />
+        &quot;bitonal&quot;,<br />
+        &quot;default&quot;,<br />
+        &quot;gray&quot;,<br />
+        &quot;color&quot;<br />
+        ],<br />
+        &quot;supports&quot;: [<br />
+        &quot;regionByPx&quot;,<br />
+        &quot;sizeByW&quot;,<br />
+        &quot;sizeByWhListed&quot;,<br />
+        &quot;cors&quot;,<br />
+        &quot;regionSquare&quot;,<br />
+        &quot;sizeByDistortedWh&quot;,<br />
+        &quot;canonicalLinkHeader&quot;,<br />
+        &quot;sizeByConfinedWh&quot;,<br />
+        &quot;sizeByPct&quot;,<br />
+        &quot;jsonldMediaType&quot;,<br />
+        &quot;regionByPct&quot;,<br />
+        &quot;rotationArbitrary&quot;,<br />
+        &quot;sizeByH&quot;,<br />
+        &quot;baseUriRedirect&quot;,<br />
+        &quot;rotationBy90s&quot;,<br />
+        &quot;profileLinkHeader&quot;,<br />
+        &quot;sizeByForcedWh&quot;,<br />
+        &quot;sizeByWh&quot;,<br />
+        &quot;mirroring&quot;<br />
+        ]<br />
+        }<br />
+        ]<br />
+        }
+      </p>
+    </details>
+
+    <div class="cell is-col-span-8">
+      <h3 class="subtitle is-6 mt-4 has-text-weight-bold"> Image Associations</h3>
+    </div>
+
+    <div class="cell is-col-span-8">
+      <p>An image belongs to one artwork.</p>
+    </div>
+
+  </div>
+</section>
