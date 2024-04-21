@@ -35,6 +35,17 @@ def request_data(url)
   formatted_response = JSON.parse(response)
 end
 
+def random_association
+  rand(11) < 1
+end
+
+# None of the artworks overlapped between exhibitions, so I created one.
+surprise_exhibit = Exhibition.find_or_create_by!(title:            "Connections",
+                                                 description:      "This exhibition appeared in the woods one day. It will return to where it came from eventually.",
+                                                 exhibition_start: Time.now.to_time,
+                                                 exhibition_end:   Time.current.advance(years:6).to_time,
+                                                 gallery_title:    "Secret Gallery")
+
 # Stop when Artworks and Artists collectively make up the row count.
 # This number is a safe estimate.
 3.times do |i|
@@ -68,7 +79,13 @@ end
                                              alt_text:        alt_text,
                                              api_id:          art["artist_id"])
 
-        artwork.exhibitions << exhibit_association
+        unless artwork.exhibitions.include?(exhibit_association)
+          artwork.exhibitions << exhibit_association
+
+          if random_association
+            artwork.exhibitions << surprise_exhibit
+          end
+        end
 
         # Attach the associated image using Active Storage.
         if !art["image_id"].blank?
