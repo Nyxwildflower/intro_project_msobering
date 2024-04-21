@@ -5,10 +5,10 @@
     <div class="cell is-col-span-12">
       <ul class="grid ">
         <li class="cell">
-          Exhibition Start: <%= @exhibition.exhibition_start %>
+          Exhibition Start: <%= @exhibition.exhibition_start.to_date %>
         </li>
         <li class="cell">
-          Exhibition End: <%= @exhibition.exhibition_end %>
+          Exhibition End: <%= @exhibition.exhibition_end.to_date  %>
         </li>
         <li class="cell">
           Belongs to Gallery: <%= pretty_null_display(@exhibition.gallery_title) %>
