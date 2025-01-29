@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  call_time: 2025-01-29 16:33:20
+  closed_time: 2025-01-29 16:33:20
+  incident_type: MyString
+  vehicle_crash: false
+  ward: MyText
+  neighbourhood: one
+
+two:
+  call_time: 2025-01-29 16:33:20
+  closed_time: 2025-01-29 16:33:20
+  incident_type: MyString
+  vehicle_crash: false
+  ward: MyText
+  neighbourhood: two
