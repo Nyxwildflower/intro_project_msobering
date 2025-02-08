@@ -1,0 +1,30 @@
+Code,Name
+\ADC\d+\Z,District Chief
+\AEPIC\d+\Z,Emergency Paramedics in the Community Unit
+\AELAT\d+\Z,Enhanced Low Acuity Triage
+\AMIRV\d+\Z,Major Incident Response Unit
+\APACE\d+\Z,Non Motorized Unit
+\APTRS\d+\Z,Special Assignment Unit
+\A\d+\Z,Ambulance Unit
+\AATV\d+\Z,Special Rescue
+\ABN\d+\Z,Special Rescue
+\ACV\d+\Z,Special Rescue
+\AD\d+\Z,District Chief
+\ADCT\d+\Z,Special Rescue
+\AE\d+\Z,Engine/Pumper
+\AFI\d+\Z,Fire Investigator
+\AGA\d+\Z,Gator
+\AGEN\d+\Z,Special Rescue
+\AHM\d+\Z,Hazmat
+\AL\d+\Z,Ladder
+\AP\d+\Z,Platoon Chief
+\AR\d+\Z,Rescue
+\ARU\d+\Z,Special Rescue
+\AS\d+\Z,Platoon Safety Officer
+\ASN\d+\Z,Special Rescue
+\ASQ\d+\Z,Squad
+\AT\d+\Z,Special Rescue
+\ATC\d+\Z,Special Rescue
+\AW\d+\Z,Water Rescue
+\AWERU\d+\Z,Special Rescue
+\AWL\d+\Z,Special Rescue
