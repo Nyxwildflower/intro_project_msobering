@@ -12,13 +12,13 @@
         <div class="col-sm-12 col-md-6">
           <div class="row">
             <h3 class="col-6 col-md-12 text-end text-md-start h5">Call Time:</h3>
-            <p class="col-6 col-md-12"><%= call.call_time %></p>
+            <p class="col-6 col-md-12"><%= call.call_time.in_time_zone('Saskatchewan').to_fs(:long_ordinal) %></p>
           </div>
         </div>
         <div class="col-sm-12 col-md-6">
           <div class="row">
             <h3 class="col-6 col-md-12 text-end text-md-start h5">Closed Time:</h3>
-            <p class="col-6 col-md-12"><%= call.closed_time %></p>
+            <p class="col-6 col-md-12"><%= call.closed_time.in_time_zone('Saskatchewan').to_fs(:long_ordinal) %></p>
           </div>
         </div>
         <div class="col-sm-12 col-md-6">
