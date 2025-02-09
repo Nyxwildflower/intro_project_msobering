@@ -6,7 +6,7 @@ require 'csv'
 # Class: WEBD-3012 Agile Full Stack Web Development
 # Date: 29-01-2025
 
-# Approximate run time of seed file: 17s
+# Approximate run time of seed file with blank database: 22s
 
 # Reset the database.
 Unit.destroy_all
@@ -43,10 +43,12 @@ calls.each do |call|
   # Only save calls that have a related neighbourhood, which should be all
   # of them, but this is a failsafe, just in case.
   if related_neighbourhood
+    vehicle_crash = call["motor_vehicle_incident"].upcase == "YES" ? true : false
+
     current_call = related_neighbourhood.calls.create!(call_time: call["call_time"],
                                                        closed_time: call["closed_time"],
                                                        incident_type: call["incident_type"],
-                                                       vehicle_crash: call["motor_vehicle_incident"],
+                                                       vehicle_crash: vehicle_crash,
                                                        ward: call["ward"])
 
     # Some call records do not have a units key.
