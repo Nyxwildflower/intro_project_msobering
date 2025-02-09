@@ -1,0 +1,62 @@
+<div class="row m-5">
+  <h1 class="col text-center fs-1">Winnipeg Fire and Paramedic Services Calls</h1>
+</div>
+
+<div class="row gy-4">
+  <% @calls.each do |call| %>
+    <div class="mx-auto col-sm-12 col-md-6 col-lg-5 card">
+      <div class="row">
+        <h2 class="col overflow-hidden text-center card-header">Call Data</h2>
+      </div>
+      <div class="row card-body">
+        <div class="col-sm-12 col-md-6">
+          <div class="row">
+            <h3 class="col-6 col-md-12 text-end text-md-start h5">Call Time:</h3>
+            <p class="col-6 col-md-12"><%= call.call_time %></p>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-6">
+          <div class="row">
+            <h3 class="col-6 col-md-12 text-end text-md-start h5">Closed Time:</h3>
+            <p class="col-6 col-md-12"><%= call.closed_time %></p>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-6">
+          <div class="row">
+            <h3 class="col-6 col-md-12 text-end text-md-start h5">Incident Type:</h3>
+            <p class="col-6 col-md-12"><%= call.incident_type %></p>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-6">
+          <div class="row">
+            <h3 class="col-6 col-md-12 text-end text-md-start h5">Vehicle Crash:</h3>
+            <p class="col-6 col-md-12"><%= call.vehicle_crash %></p>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="row card-body">
+            <h2 class="text-center card-title">Location</h2>
+            <div class="col">
+              <div class="row">
+                <p class="col col-12">Ward: <%= call.ward %></p>
+                <p class="col col-12">Neighbourhood: <%= call.neighbourhood.name %></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="row card-body">
+            <h2 class="text-center card-title">Units Sent</h2>
+            <ul class="col list-group list-group-flush">
+              <% call.units.each do |unit| %>
+                <li class="list-group-item"><%= unit.code %></li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
