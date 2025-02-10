@@ -1,0 +1,44 @@
+<div class="row my-4">
+  <h1 class="text-center">Call from <%= @call.call_time.in_time_zone('Saskatchewan').to_fs(:long_ordinal) %></h1>
+</div>
+
+<div class="row py-2 border rounded-top">
+  <h2 class="text-center">Information</h2>
+</div>
+<div class="row border-start">
+  <div class="col py-3">
+    <h3>Time of Call</h3>
+    <p><%= @call.call_time.in_time_zone('Saskatchewan').to_fs(:long_ordinal) %></p>
+
+    <h3>End of Call Response</h3>
+    <p><%= @call.closed_time.in_time_zone('Saskatchewan').to_fs(:long_ordinal) %></p>
+
+    <h3>Type of Incident</h3>
+    <p><%= @call.incident_type %></p>
+
+    <h3>Motor Vehicle Incident</h3>
+    <p><%= @call.vehicle_crash %></p>
+  </div>
+  <div class="col py-3 bg-body-secondary">
+    <h3>Units Sent</h3>
+    <div class="list-group">
+      <% @call.units.each do |unit| %>
+        <a href="#" class="list-group-item list-group-item-action"><%= unit.code %></a>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="row bg-body-secondary">
+  <h2 class="py-2">Location</h2>
+</div>
+<div class="row border-start border-bottom">
+  <div class="col">
+    <h3>Ward</h3>
+    <p><%= @call.ward %></p>
+  </div>
+  <div class="col bg-body-secondary">
+    <h3>Neighbourhood</h3>
+    <p><%= @call.neighbourhood.name %></p>
+  </div>
+</div>
