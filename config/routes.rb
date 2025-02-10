@@ -9,4 +9,5 @@ Rails.application.routes.draw do
   root "calls#index"
 
   get '/calls/:id', to: 'calls#show', as: 'call'
+  get '/neighbourhoods/:id', to: 'neighbourhoods#show', as: 'neighbourhood'
 end
