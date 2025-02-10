@@ -7,4 +7,6 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "calls#index"
+
+  get '/calls/:id', to: 'calls#show', as: 'call'
 end
