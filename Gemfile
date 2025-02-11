@@ -32,6 +32,9 @@ gem 'bootstrap'
 # SASS is required to use Bootstrap.
 gem 'sassc-rails'
 
+# Paginate results [https://github.com/kaminari/kaminari]
+gem 'kaminari'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
 
