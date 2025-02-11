@@ -23,7 +23,7 @@
     <h3>Units Sent</h3>
     <div class="list-group">
       <% @call.units.each do |unit| %>
-        <a href="#" class="list-group-item list-group-item-action"><%= unit.code %></a>
+        <a href="#" class="list-group-item list-group-item-action"><%= link_to unit.code, unit %></a>
       <% end %>
     </div>
   </div>
@@ -39,6 +39,6 @@
   </div>
   <div class="col bg-body-secondary">
     <h3>Neighbourhood</h3>
-    <p><%= @call.neighbourhood.name %></p>
+    <p><%= link_to @call.neighbourhood.name, @call.neighbourhood %></p>
   </div>
 </div>

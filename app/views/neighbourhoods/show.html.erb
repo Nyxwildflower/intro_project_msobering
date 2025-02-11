@@ -1,5 +1,5 @@
-<div class="row">
-  <h2><%= @neighbourhood.name %> Neighbourhood Calls</h2>
+<div class="row my-4">
+  <h1 class="text-center"><%= @neighbourhood.name %> Neighbourhood Calls</h1>
 </div>
 
 <%= render partial: "calls/call", locals: {calls: @neighbourhood.calls} %>

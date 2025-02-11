@@ -1,0 +1,16 @@
+<div class="row my-4">
+  <h1 class="text-center">Unit</h1>
+</div>
+
+<div class="row">
+  <div class="col">
+    <h2>Code:</h2>
+    <p><%= @unit.code %></p>
+  </div>
+  <div class="col">
+    <h2>Description:</h2>
+    <p><%= @unit.name %></p>
+  </div>
+</div>
+
+<%= render partial: "calls/call", locals: {calls: @unit.calls} %>
