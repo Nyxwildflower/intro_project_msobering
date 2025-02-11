@@ -9,4 +9,5 @@ Rails.application.routes.draw do
   root "calls#index"
 
   resources :calls, :neighbourhoods, :units, only: [:show]
+  get "about", to: "static_pages#about"
 end
