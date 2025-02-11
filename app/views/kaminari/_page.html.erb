@@ -8,7 +8,7 @@
     remote:        data-remote
 -%>
 <span class="page-item page<%= ' current' if page.current? %>">
-  <div class="page-link">
+  <span class="page-link">
     <%= link_to_unless page.current?, page, url, {remote: remote, rel: page.rel} %>
-  </div>
+  </span>
 </span>
