@@ -1,6 +1,6 @@
 class CallsController < ApplicationController
   def index
-    @calls = Call.includes(:neighbourhood).includes(:units).all
+    @calls = Call.page(params[:page]).includes(:neighbourhood).includes(:units)
   end
 
   def show

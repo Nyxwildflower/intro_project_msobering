@@ -2,4 +2,8 @@
   <h1 class="col text-center fs-1">Winnipeg Fire and Paramedic Services Calls</h1>
 </div>
 
+<div class="row mx-auto navigation">
+  <%= paginate @calls %>
+</div>
+
 <%= render partial: "call", locals: {calls: @calls} %>
