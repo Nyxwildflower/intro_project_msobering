@@ -23,7 +23,7 @@
     <h3>Units Sent</h3>
     <div class="list-group">
       <% @call.units.each do |unit| %>
-        <a href="#" class="list-group-item list-group-item-action"><%= link_to unit.code, unit %></a>
+        <button class="list-group-item list-group-item-action"><%= link_to unit.code, unit %></button>
       <% end %>
     </div>
   </div>
