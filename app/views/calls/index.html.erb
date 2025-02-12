@@ -3,7 +3,7 @@
 </div>
 
 <div class="row mx-auto mb-3 navigation">
-  <%= paginate @calls %>
+  <%= paginate @calls, window: 2 %>
 </div>
 
 <%= render partial: "call", locals: {calls: @calls} %>

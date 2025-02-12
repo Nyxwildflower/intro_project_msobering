@@ -2,10 +2,10 @@
   <h1 class="text-center">Call from <%= @call.call_time.in_time_zone('Saskatchewan').to_fs(:long_ordinal) %></h1>
 </div>
 
-<div class="row py-2 border rounded-top">
+<div class="row py-2 border rounded-top bg-white">
   <h2 class="text-center">Information</h2>
 </div>
-<div class="row border-start">
+<div class="row border-start bg-white">
   <div class="col py-3">
     <h3>Time of Call</h3>
     <p><%= @call.call_time.in_time_zone('Saskatchewan').to_fs(:long_ordinal) %></p>
@@ -23,7 +23,7 @@
     <h3>Units Sent</h3>
     <div class="list-group">
       <% @call.units.each do |unit| %>
-        <div class="list-group-item list-group-item-action"><%= link_to unit.code, unit %></div>
+        <div class="list-group-item"><%= link_to unit.code, unit, class: "py-3 pe-5" %></div>
       <% end %>
     </div>
   </div>

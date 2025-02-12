@@ -7,7 +7,7 @@
     paginator:     the paginator that renders the pagination tags inside
 -%>
 <%= paginator.render do -%>
-  <nav class="pagination" role="navigation" aria-label="pager">
+  <nav class="pagination p-0" role="navigation" aria-label="pager">
     <div class="pagination mx-auto">
       <%= first_page_tag unless current_page.first? %>
       <%= prev_page_tag unless current_page.first? %>
