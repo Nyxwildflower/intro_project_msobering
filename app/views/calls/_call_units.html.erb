@@ -1,0 +1,6 @@
+<% call.units.each do |unit| %>
+  <li class="list-group-item"><%= link_to unit.code, unit %></li>
+<% end %>
+<% if call.units.count == 0 %>
+  <li class="list-group-item text-secondary">There are no units listed.</li>
+<% end %>

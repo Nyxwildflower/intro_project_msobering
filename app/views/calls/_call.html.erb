@@ -54,9 +54,7 @@
           <div class="row card-body">
             <h2 class="text-center card-title">Units Sent</h2>
             <ul class="col list-group list-group-flush">
-              <% call.units.each do |unit| %>
-                <li class="list-group-item"><%= link_to unit.code, unit %></li>
-              <% end %>
+              <%= render partial: "calls/call_units", locals: {call: call} %>
             </ul>
           </div>
         </div>
