@@ -20,6 +20,15 @@
           <ul class="navbar-nav me-auto">
             <li class="nav-item"><%= link_to "About", about_path, class: "nav-link text-light fw-semibold" %></li>
           </ul>
+
+          <%= form_with(url: root_path, method: :get, class: "d-flex") do |form| %>
+            <div class="visually-hidden">
+              <%= form.label :search_by_incident, "Search for date of call:" %>
+            </div>
+            <%= form.text_field :search_by_incident, placeholder: "ex. 'alarm'", class: "form-control me-2" %>
+
+            <%= form.submit "Search", class: "btn btn-dark" %>
+          <% end %>
         </div>
       </div>
     </nav>
