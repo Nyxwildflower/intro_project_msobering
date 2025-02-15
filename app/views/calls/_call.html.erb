@@ -1,3 +1,11 @@
+<% if @query %>
+  <div class="row">
+    <div class="alert alert-info" role="alert">
+      <div>Your search for: "<%= @query %>" returned <%= @count %> results.</div>
+    </div>
+  </div>
+<% end %>
+
 <div class="row gy-4">
   <% calls.each do |call| %>
     <div class="mx-auto col-sm-12 col-md-6 col-lg-5 card border-warning">
