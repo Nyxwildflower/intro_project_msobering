@@ -1,7 +1,7 @@
-<% if @query %>
+<% if @query || @filter_query %>
   <div class="row">
     <div class="alert alert-info" role="alert">
-      <div>Your search for: "<%= @query %>" returned <%= @count %> results.</div>
+      <div>Your search for: "<%= @query %>" in the neighbourhood "<%= @filter_query? @filter_query : "Any" %>" returned <%= pluralize(@count, "result") %>.</div>
     </div>
   </div>
 <% end %>
