@@ -18,16 +18,20 @@
         <%= link_to "Home", root_path, class: "navbar-brand text-light fw-bold mb-1" %>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto">
-            <li class="nav-item"><%= link_to "About", about_path, class: "nav-link text-light fw-semibold" %></li>
+            <li class="nav-item"><%= link_to "About", about_path, class: "nav-link text-light fw-semibold me-3" %></li>
           </ul>
 
           <%= form_with(url: root_path, method: :get, class: "d-flex") do |form| %>
             <div class="visually-hidden">
               <%= form.label :search_by_incident, "Search for call incident type:" %>
             </div>
-            <%= form.text_field :search_by_incident, placeholder: "ex. 'alarm'", class: "form-control me-2" %>
+            <div class="input-group">
+              <%= form.text_field :search_by_incident, placeholder: "ex. 'alarm'", class: "form-control me-2" %>
+              <%= form.collection_select :search_by_neighbourhood, Neighbourhood.order(:name), :name, :name, { :include_blank => "Any"}, class: "form-select form-select-sm" %>
 
-            <%= form.submit "Search Incidents", class: "btn btn-dark" %>
+              <%= form.submit "Search Incidents", class: "btn btn-dark" %>
+            </div>
+
           <% end %>
         </div>
       </div>
